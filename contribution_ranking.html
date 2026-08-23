@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=520, height={{ canvas_height }}">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            width: 520px;
+            background: #09111f;
+            color: #edf3ff;
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+        }
+        .board {
+            width: 520px;
+            min-height: 100%;
+            background:
+                radial-gradient(circle at 88% 5%, rgba(46, 196, 182, .22), transparent 30%),
+                linear-gradient(155deg, #111d35 0%, #09111f 72%);
+            overflow: hidden;
+        }
+        .header {
+            height: 142px;
+            padding: 28px 30px 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, .10);
+        }
+        .eyebrow {
+            color: #58d6c7;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 4px;
+        }
+        .title {
+            margin-top: 9px;
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+        .subtitle {
+            margin-top: 8px;
+            color: #91a1bb;
+            font-size: 13px;
+        }
+        .item {
+            height: 76px;
+            margin: 0 18px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, .075);
+        }
+        .rank {
+            width: 42px;
+            color: #6f819f;
+            font-size: 18px;
+            font-weight: 800;
+            text-align: center;
+        }
+        .rank.top { color: #f5c96a; }
+        .avatar {
+            width: 48px;
+            height: 48px;
+            margin: 0 14px 0 8px;
+            border: 2px solid rgba(88, 214, 199, .65);
+            border-radius: 12px;
+            object-fit: cover;
+        }
+        .identity { flex: 1; min-width: 0; }
+        .name {
+            overflow: hidden;
+            color: #f4f7ff;
+            font-size: 16px;
+            font-weight: 700;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .uid {
+            margin-top: 4px;
+            color: #667792;
+            font-size: 11px;
+        }
+        .score { text-align: right; }
+        .count {
+            color: #58d6c7;
+            font-size: 22px;
+            font-weight: 800;
+        }
+        .unit {
+            margin-left: 4px;
+            color: #8da0bd;
+            font-size: 11px;
+        }
+        .footer {
+            height: 58px;
+            padding: 17px 24px;
+            color: #7385a1;
+            font-size: 12px;
+            text-align: center;
+        }
+        body.compact .header {
+            height: 118px;
+            padding: 21px 30px 13px;
+        }
+        body.compact .title {
+            margin-top: 6px;
+            font-size: 26px;
+        }
+        body.compact .subtitle {
+            margin-top: 5px;
+            font-size: 12px;
+        }
+        body.compact .item {
+            height: 52px;
+        }
+        body.compact .rank {
+            font-size: 16px;
+        }
+        body.compact .avatar {
+            width: 38px;
+            height: 38px;
+            margin-right: 12px;
+            border-radius: 10px;
+        }
+        body.compact .name {
+            font-size: 15px;
+        }
+        body.compact .uid {
+            margin-top: 2px;
+            font-size: 10px;
+        }
+        body.compact .count {
+            font-size: 20px;
+        }
+        body.compact .footer {
+            height: 42px;
+            padding: 12px 24px;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body class="{% if compact_layout %}compact{% endif %}">
+    <div class="board">
+        <div class="header">
+            <div class="eyebrow">CRYPTO VAULT</div>
+            <div class="title">{{ title }}</div>
+            <div class="subtitle">{{ subtitle }}</div>
+        </div>
+        {% for user in ranking %}
+        <div class="item">
+            <div class="rank {% if loop.index <= 3 %}top{% endif %}">#{{ loop.index }}</div>
+            <img class="avatar" src="https://q4.qlogo.cn/headimg_dl?dst_uin={{ user.uid }}&spec=100">
+            <div class="identity">
+                <div class="name">{{ user.name }}</div>
+                <div class="uid">QQ {{ user.uid }}</div>
+            </div>
+            <div class="score">
+                <span class="count">{{ user.count }}</span><span class="unit">张</span>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="footer">{{ footer }}</div>
+    </div>
+</body>
+</html>

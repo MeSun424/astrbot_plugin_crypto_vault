@@ -1,0 +1,14 @@
+{
+  "vault_settings": {
+    "type": "object",
+    "description": "加密图库群聊设置",
+    "items": {
+      "target_group_ids": {
+        "type": "list",
+        "description": "接收加密合并转发图片的群聊QQ号列表。",
+        "hint": "填入纯数字的群号。当有人触发 /加密2 时，结果会统一发送到这些群里。",
+        "default": []
+      }
+    }
+  }
+}

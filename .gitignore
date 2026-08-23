@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.venv/
+venv/
+*.zip
+*.log
+data/
+contribution_stats.json
+.codex_task_packet.md

@@ -1,0 +1,6 @@
+name: astrbot_plugin_crypto_vault
+desc: 跨群合并转发版图片加密与解密安全图库插件
+help: 使用 /加密、/加密2、/解密、/涩图榜 或 /涩图月榜
+version: 1.0
+author: MeSun
+repo: https://github.com/MeSun424/astrbot_plugin_crypto_vault
